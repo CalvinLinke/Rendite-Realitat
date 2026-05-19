@@ -11,116 +11,110 @@ const journal = (await getCollection("journal")).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
 const featured = journal.filter((entry) => entry.data.featured).slice(0, 3);
-const currentArticles = featured.length ? featured : journal.slice(0, 3);
-const deepDives = journal.slice(0, 3);
+const latest = journal.slice(0, 6);
 const leadMagnets = (await getCollection("mehrwerte")).slice(0, 2);
 ---
 
 <BaseLayout title={site.name} description={site.description}>
-  <section class="editorial-home-hero">
+  <section class="hero">
     <div>
-      <h1>Unternehmen, Immobilien und echte Erfahrungen ohne Inszenierung.</h1>
+      <p class="eyebrow">Immobilien · Unternehmertum · echte Erfahrungen</p>
+      <h1>{site.claim}</h1>
       <p>
-        Ein persönliches Journal über Aufbau, Entscheidungen, Fehler, Rendite
-        und die Realität dahinter.
+        Ich nehme dich mit auf meine Reise als junger Unternehmer im
+        Immobilienbereich. Mit Entscheidungen, Fehlern, Erfolgen und Learnings
+        aus der Praxis.
       </p>
-      <div class="link-row">
-        <a class="button" href="/journal">Neueste Beiträge lesen</a>
-        <a class="button-secondary" href="/meine-reise">Worum es hier geht</a>
+      <div class="hero-actions">
+        <a class="button" href="/meine-reise">Meine Reise lesen</a>
+        <a class="button-secondary" href="/mehrwerte">Kostenlose Mehrwerte</a>
       </div>
     </div>
-    <div class="home-hero-image">
-      <img src="/images/interiors/interior-hero.jpg" alt="Ruhiger Arbeitsbereich mit Immobilienunterlagen" />
-    </div>
-  </section>
-
-  <div class="section-tight"><div class="editorial-divider"></div></div>
-
-  <section class="section-tight">
-    <div class="topline">
-      <h2>Aktuelle Einblicke</h2>
-      <span class="archive-count">Archiv ({String(journal.length).padStart(3, "0")})</span>
-    </div>
-    <div class="grid">
-      {currentArticles.map((entry) => (
-        <ArticleCard
-          href={`/journal/${entry.id}`}
-          title={entry.data.title}
-          description={entry.data.description}
-          category={entry.data.category}
-          date={entry.data.date}
-          image={entry.data.image}
-        />
-      ))}
+    <div class="hero-image">
+      <img src="/images/portraits/calvin-portrait.jpg" alt="Calvin Linke" />
+      <p class="hero-note">
+        Kein perfekter Ratgeber von oben herab. Sondern ein ehrlicher Blick auf
+        das, was in Immobilienprojekten und beim Aufbau von Unternehmen wirklich
+        passiert.
+      </p>
     </div>
   </section>
 
   <section class="band">
-    <div class="section topic-matrix">
-      <div>
-        <p class="eyebrow">Navigations-Matrix</p>
-        <h2>Inhalte nach Schwerpunkt sortiert.</h2>
-      </div>
-      <div class="topic-grid">
-        <a class="topic-link" href="/immobilienwissen">
-          <span class="material-symbols-outlined" aria-hidden="true">domain</span>
-          <span>Immobilien</span>
-        </a>
-        <a class="topic-link" href="/unternehmensgruppe">
-          <span class="material-symbols-outlined" aria-hidden="true">corporate_fare</span>
-          <span>Unternehmen</span>
-        </a>
-        <a class="topic-link" href="/erfahrungen">
-          <span class="material-symbols-outlined" aria-hidden="true">lightbulb</span>
-          <span>Learnings</span>
-        </a>
-        <a class="topic-link" href="/journal">
-          <span class="material-symbols-outlined" aria-hidden="true">auto_stories</span>
-          <span>Journal</span>
-        </a>
+    <div class="section-tight">
+      <SectionHeader
+        eyebrow="Aktuell"
+        title="Neue Einblicke aus dem Journal"
+        text="Die Website lebt von echten Geschichten: was funktioniert, was schiefgeht und was man daraus lernen kann."
+      />
+      <div class="grid">
+        {featured.map((entry) => (
+          <ArticleCard
+            href={`/journal/${entry.id}`}
+            title={entry.data.title}
+            description={entry.data.description}
+            category={entry.data.category}
+            date={entry.data.date}
+            image={entry.data.image}
+          />
+        ))}
       </div>
     </div>
-  </section>
-
-  <section class="statement">
-    <span class="material-symbols-outlined" aria-hidden="true">verified</span>
-    <p>
-      "Hier geht es nicht um schnelle Tipps, Status oder Selbstdarstellung. Es
-      geht um echte Erfahrungen aus dem Aufbau von Projekten mit Zahlen,
-      Unsicherheiten und Learnings."
-    </p>
-    <div class="editorial-divider"></div>
   </section>
 
   <section class="section">
-    <div class="section-header">
-      <p class="eyebrow">Deep Dives</p>
-      <h2>Aus dem Maschinenraum</h2>
-    </div>
-    <div class="deep-dive-list">
-      {deepDives.map((entry, index) => (
-        <a class="deep-dive-link" href={`/journal/${entry.id}`}>
-          <div>
-            <span class="deep-dive-label">
-              {String(index + 1).padStart(3, "0")}. {entry.data.category}
-            </span>
-            <h3>{entry.data.title}</h3>
-          </div>
-          <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
-        </a>
-      ))}
+    <div class="split">
+      <div>
+        <p class="eyebrow">Worum es hier geht</p>
+        <h2>Mehr Realität hinter der Rendite.</h2>
+      </div>
+      <div>
+        <p>
+          Immobilien wirken von außen oft einfacher, als sie in der Praxis sind.
+          Genau deshalb geht es hier nicht nur um Ergebnisse, sondern um den
+          Weg dorthin: Entscheidungen, Gespräche, Sanierungen, Zahlen,
+          Rückschläge und die Menschen dahinter.
+        </p>
+        <p>
+          Rendite & Realität soll Orientierung geben, ohne schnelle Versprechen
+          zu machen. Verständlich, bodenständig und nah an echten Projekten.
+        </p>
+      </div>
     </div>
   </section>
 
   <section class="band">
     <div class="section">
       <SectionHeader
-        eyebrow="Unternehmensgruppe"
-        title="Aus Ideen sind eigene Aufgaben geworden."
-        text="Die Unternehmen sind nicht als fertiger Plan entstanden. Viele Dinge haben sich aus der Praxis heraus entwickelt."
+        eyebrow="Themen"
+        title="Drei Blickwinkel, ein ehrlicher Ansatz"
+        text="Die Inhalte sind so aufgebaut, dass sie für angehende Anleger, Eigentümer und unternehmerisch denkende Leser verständlich bleiben."
       />
       <div class="grid">
-        {companies.map((company) => <CompanyCard company={company} />)}
+        <article class="plain-card">
+          <h3>Immobilienwissen</h3>
+          <p>
+            Einfache Einordnung zu Rendite, Risiko, Standort, Sanierung,
+            Bewertung und Verkaufsfragen.
+          </p>
+          <a class="button-secondary" href="/immobilienwissen">Wissen lesen</a>
+        </article>
+        <article class="plain-card">
+          <h3>Erfahrungen</h3>
+          <p>
+            Konkrete Geschichten aus Projekten, Entscheidungen und Momenten, in
+            denen Realität wichtiger war als der Plan.
+          </p>
+          <a class="button-secondary" href="/erfahrungen">Erfahrungen lesen</a>
+        </article>
+        <article class="plain-card">
+          <h3>Mehrwerte</h3>
+          <p>
+            Checklisten, Roadmaps und praktische Unterlagen für Käufer,
+            Eigentümer und Menschen, die strukturierter entscheiden wollen.
+          </p>
+          <a class="button-secondary" href="/mehrwerte">Mehrwerte ansehen</a>
+        </article>
       </div>
     </div>
   </section>
@@ -128,8 +122,8 @@ const leadMagnets = (await getCollection("mehrwerte")).slice(0, 2);
   <section class="section">
     <SectionHeader
       eyebrow="Kostenlose Mehrwerte"
-      title="Praktische Inhalte ohne Verkaufsdruck."
-      text="Klare Schritte, typische Fehler und Entscheidungshilfen für Menschen, die Immobilien strukturierter betrachten wollen."
+      title="Praktische Inhalte ohne Verkaufsdruck"
+      text="Die ersten Inhalte sind bewusst einfach gehalten: klare Schritte, typische Fehler und Entscheidungshilfen."
     />
     <div class="grid-two">
       {leadMagnets.map((entry) => (
@@ -143,19 +137,36 @@ const leadMagnets = (await getCollection("mehrwerte")).slice(0, 2);
     </div>
   </section>
 
-  <section class="newsletter-section">
-    <div>
-      <p class="eyebrow">Newsletter</p>
-      <h2>In der Ruhe liegt die Kraft.</h2>
-      <p>
-        Unregelmäßige Notizen über Immobilien, Unternehmertum und das, was man
-        erst unterwegs lernt. Neue Einblicke, wenn es wirklich etwas zu erzählen
-        gibt.
-      </p>
-      <form class="newsletter-form" action="/kontakt">
-        <input type="email" name="email" placeholder="E-Mail Adresse" aria-label="E-Mail Adresse" />
-        <button type="submit">Mitlesen</button>
-      </form>
+  <section class="band">
+    <div class="section">
+      <SectionHeader
+        eyebrow="Unternehmensgruppe"
+        title="Aus Ideen sind eigene Aufgaben geworden"
+        text="Die Unternehmen sind nicht als fertiger Plan entstanden. Viele Dinge haben sich aus der Praxis heraus entwickelt."
+      />
+      <div class="grid">
+        {companies.map((company) => <CompanyCard company={company} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <SectionHeader
+      eyebrow="Journal"
+      title="Weitere Beiträge"
+      text="Alle Texte sind darauf ausgelegt, Dinge verständlich zu machen und ehrlich einzuordnen."
+    />
+    <div class="grid">
+      {latest.map((entry) => (
+        <ArticleCard
+          href={`/journal/${entry.id}`}
+          title={entry.data.title}
+          description={entry.data.description}
+          category={entry.data.category}
+          date={entry.data.date}
+          image={entry.data.image}
+        />
+      ))}
     </div>
   </section>
 </BaseLayout>
