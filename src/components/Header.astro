@@ -9,15 +9,55 @@ const isActive = (href: string) => {
 ---
 
 <header class="site-header">
-  <a class="brand" href="/" aria-label="Rendite & Realität Startseite">
-    <span class="brand-mark">R&R</span>
-    <span>{site.name}</span>
-  </a>
-  <nav aria-label="Hauptnavigation">
-    {navItems.map((item) => (
-      <a href={item.href} aria-current={isActive(item.href) ? "page" : undefined}>
-        {item.label}
-      </a>
-    ))}
-  </nav>
+  <div class="site-header-inner">
+    <a class="brand" href="/" aria-label="Rendite & Realität Startseite">
+      {site.name}
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu">
+      <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+      <span class="sr-only">Menü öffnen</span>
+    </button>
+    <nav class="desktop-nav" aria-label="Hauptnavigation">
+      {navItems.map((item) => (
+        <a href={item.href} aria-current={isActive(item.href) ? "page" : undefined}>
+          {item.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+  <div class="mobile-menu" id="mobile-menu" hidden>
+    <button class="menu-close" type="button">
+      <span class="material-symbols-outlined" aria-hidden="true">close</span>
+      <span class="sr-only">Menü schließen</span>
+    </button>
+    <nav aria-label="Mobile Hauptnavigation">
+      {navItems.map((item) => (
+        <a href={item.href} aria-current={isActive(item.href) ? "page" : undefined}>
+          {item.label}
+        </a>
+      ))}
+    </nav>
+  </div>
 </header>
+
+<script>
+  const menu = document.getElementById("mobile-menu");
+  const openButton = document.querySelector(".menu-toggle");
+  const closeButton = document.querySelector(".menu-close");
+
+  const openMenu = () => {
+    menu?.removeAttribute("hidden");
+    openButton?.setAttribute("aria-expanded", "true");
+    document.body.classList.add("menu-open");
+  };
+
+  const closeMenu = () => {
+    menu?.setAttribute("hidden", "");
+    openButton?.setAttribute("aria-expanded", "false");
+    document.body.classList.remove("menu-open");
+  };
+
+  openButton?.addEventListener("click", openMenu);
+  closeButton?.addEventListener("click", closeMenu);
+  menu?.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
+</script>
