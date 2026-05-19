@@ -1,6 +1,135 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ArticleCard from "../components/ArticleCard.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+
+const articles = (await getCollection("journal"))
+  .filter((entry) => ["Immobilienwissen", "Eigentümer"].includes(entry.data.category))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
-<BaseLayout title="Immobilienwissen" description="Verständliche Einordnung zu Rendite, Risiko, Standort und Sanierung.">
-  <section class="section prose"><p class="eyebrow">Immobilienwissen</p><h1>Einfacher erklärt, ohne Dinge zu vereinfachen.</h1><p>Immobilien werden oft auf einzelne Zahlen oder Meinungen reduziert. In der Praxis hängen Rendite, Risiko, Standort, Zustand, Finanzierung und Motivation aber zusammen.</p><h2>Rendite und Risiko</h2><p>Viele Gespräche drehen sich schnell um Rendite. Das ist nachvollziehbar, denn am Ende handelt es sich um ein Anlageprodukt. Gleichzeitig wird oft vergessen, dass Rendite und Risiko immer zusammengehören.</p><p>Die richtige Rendite ist nicht die, die auf dem Papier am besten aussieht. Sondern die, die langfristig zur eigenen Situation passt.</p><h2>Standort</h2><p>Standort bedeutet mehr als gute Gegend oder schöne Straße. Mikrolage, Makrolage, Infrastruktur, wirtschaftliche Perspektive und regionale Entwicklung gehören zusammen.</p><h2>Sanierung</h2><p>Sanierung ist nicht nur ein Kostenpunkt. Wenn das Konzept stimmt, kann sie ein Werkzeug sein, um Wohnqualität und Wert zu schaffen.</p></section>
+
+<BaseLayout
+  title="Immobilienwissen"
+  description="Verständliche Einordnung zu Rendite, Risiko, Standort, Sanierung, Verkauf und Immobilienentscheidungen."
+  image="/images/interiors/kueche-saniert.jpg"
+>
+  <section class="hero">
+    <div>
+      <p class="eyebrow">Immobilienwissen</p>
+      <h1>Einfacher erklärt, ohne Dinge zu vereinfachen.</h1>
+      <p>
+        Immobilien werden oft auf einzelne Zahlen oder Meinungen reduziert. In
+        der Praxis hängen Rendite, Risiko, Standort, Zustand, Finanzierung und
+        Motivation aber zusammen.
+      </p>
+    </div>
+    <div class="hero-image">
+      <img src="/images/interiors/kueche-saniert.jpg" alt="Sanierte Küche" />
+      <p class="hero-note">
+        Ziel ist nicht die eine richtige Meinung. Ziel ist ein besseres
+        Verständnis für Entscheidungen, die langfristig wirken.
+      </p>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="section">
+      <SectionHeader
+        eyebrow="Themen"
+        title="Was hier eingeordnet wird"
+        text="Die Inhalte richten sich an Menschen, die Immobilien verstehen möchten, ohne sich durch Fachsprache kämpfen zu müssen."
+      />
+      <ul class="topic-list">
+        <li>Immobilien kaufen</li>
+        <li>Immobilien verkaufen</li>
+        <li>Immobilien bewerten</li>
+        <li>Sanierung verstehen</li>
+        <li>Kapitalanlage</li>
+        <li>Dresden, Sachsen und Umland</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <SectionHeader
+      eyebrow="Aktuelle Beiträge"
+      title="Ratgeber und Einordnungen"
+    />
+    <div class="grid">
+      {articles.map((entry) => (
+        <ArticleCard
+          href={`/journal/${entry.id}`}
+          title={entry.data.title}
+          description={entry.data.description}
+          category={entry.data.category}
+          date={entry.data.date}
+          image={entry.data.image}
+        />
+      ))}
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="section">
+      <SectionHeader
+        eyebrow="Grundhaltung"
+        title="Rendite und Risiko gehören zusammen."
+        text="Viele suchen nach hoher Rendite mit möglichst wenig Risiko. In der Realität funktioniert diese Kombination selten."
+      />
+      <div class="grid">
+        <article class="plain-card">
+          <h3>Rendite</h3>
+          <p>
+            Rendite ist kein einzelner Wert. Sie verändert sich mit Kaufpreis,
+            Finanzierung, Kosten, Miete, Zeit und Entwicklung des Standorts.
+          </p>
+        </article>
+        <article class="plain-card">
+          <h3>Risiko</h3>
+          <p>
+            Höhere Rendite bedeutet meistens auch höhere Unsicherheit. Deshalb
+            muss eine Immobilie zur eigenen Situation und Risikobereitschaft
+            passen.
+          </p>
+        </article>
+        <article class="plain-card">
+          <h3>Sanierung</h3>
+          <p>
+            Sanierung ist nicht nur ein Kostenpunkt. Wenn das Konzept stimmt,
+            kann sie ein Werkzeug sein, um Wohnqualität und Wert zu schaffen.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="split">
+      <div>
+        <p class="eyebrow">Region</p>
+        <h2>Dresden und Sachsen nicht nur aus Zahlen betrachten.</h2>
+      </div>
+      <div>
+        <p>
+          Wenn ich über Immobilien spreche, dann fast immer mit regionalem
+          Fokus: Dresden, Sachsen und das direkte Umland. Nicht aus
+          Bequemlichkeit, sondern weil man einen Markt wirklich verstehen muss,
+          um gute Entscheidungen zu treffen.
+        </p>
+        <p>
+          Dresden verbindet historische Substanz, Lebensqualität,
+          Wissenschaftsstandort und industrielle Entwicklung. Gleichzeitig ist
+          das Angebot in guten Lagen begrenzt. Genau diese Mischung macht den
+          Markt spannend.
+        </p>
+        <p>
+          Durch steigende Kosten, Regulierung und höhere Zinsen rückt auch das
+          Umland stärker in den Fokus: Pirna, Freital, Kesselsdorf und weitere
+          Standorte profitieren davon, dass Nähe zur Stadt nicht immer Zentrum
+          bedeuten muss.
+        </p>
+      </div>
+    </div>
+  </section>
 </BaseLayout>

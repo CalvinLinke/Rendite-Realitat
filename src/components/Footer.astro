@@ -1,0 +1,18 @@
+---
+import { navItems, site } from "../data/site";
+---
+
+<footer class="site-footer">
+  <div>
+    <p class="footer-title">{site.name}</p>
+    <p>
+      Ehrliche Einblicke in Immobilien, Unternehmertum und Entscheidungen aus
+      der Praxis.
+    </p>
+  </div>
+  <div class="footer-links">
+    {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
+    <a href="/impressum">Impressum</a>
+    <a href="/datenschutz">Datenschutz</a>
+  </div>
+</footer>

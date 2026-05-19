@@ -1,6 +1,151 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionHeader from "../components/SectionHeader.astro";
 ---
-<BaseLayout title="Meine Reise" description="Die persönliche Geschichte hinter Rendite & Realität.">
-  <section class="section prose"><p class="eyebrow">Meine Reise</p><h1>Ich bin noch nicht am Ziel. Genau darum geht es hier.</h1><p>Ich bin Calvin, 27, komme aus Dresden und bin der Region bis heute treu geblieben.</p><p>Nach dem Abitur bin ich nach Leipzig gegangen und habe Vermögensmanagement mit Schwerpunkt Immobilienwirtschaft studiert. Die Theorie war wichtig, aber das meiste habe ich danach in der Praxis gelernt.</p><p>Danach ging es klassisch los: Makler, Hausverwaltung, Immobilienhandel und später eines der größeren Maklerhäuser in Dresden. Viel gesehen, viel gelernt und vor allem verstanden, wie der Markt tatsächlich funktioniert.</p><p>Selbstständig geworden bin ich zum Jahreswechsel 2022/2023, in einer Phase mit steigenden Zinsen und mehr Unsicherheit. Für mich war das genau der Moment, in dem neue Chancen entstanden sind.</p><div class="quote">Weniger Theorie, mehr Praxis. Weniger Hochglanz, mehr Realität.</div><p>Heute bin ich im Immobilienmarkt selbstständig mit Fokus auf Ankauf, Entwicklung und Sanierung. Mich reizt vor allem, dass am Ende etwas Greifbares entsteht: Wohnraum, der genutzt wird. Ergebnisse, die sichtbar sind.</p></section>
+
+<BaseLayout
+  title="Meine Reise"
+  description="Die persönliche Geschichte hinter Rendite & Realität: Einstieg in Immobilien, erste Learnings und der Aufbau mehrerer Unternehmen."
+  image="/images/portraits/calvin-portrait.jpg"
+>
+  <section class="hero">
+    <div>
+      <p class="eyebrow">Meine Reise</p>
+      <h1>Ich bin noch nicht am Ziel. Genau darum geht es hier.</h1>
+      <p>
+        Ich bin Calvin, 27, komme aus Dresden und bin der Region bis heute treu
+        geblieben. Auf dieser Seite geht es nicht um eine fertige
+        Erfolgsgeschichte, sondern um den Weg: ehrlich, praktisch und mit allen
+        Lernmomenten dazwischen.
+      </p>
+    </div>
+    <div class="portrait-strip">
+      <img src="/images/portraits/calvin-portrait-alt.jpg" alt="Calvin Linke" />
+      <img src="/images/portraits/calvin-square.jpg" alt="Calvin Linke Portrait" />
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="section">
+      <SectionHeader
+        eyebrow="Startpunkt"
+        title="Von der Theorie in die Praxis"
+        text="Nach dem Abitur bin ich nach Leipzig gegangen und habe Vermögensmanagement mit Schwerpunkt Immobilienwirtschaft studiert. Die Theorie war wichtig, aber das meiste habe ich danach in der Praxis gelernt."
+      />
+      <div class="split">
+        <div class="plain-card">
+          <h3>Der klassische Einstieg</h3>
+          <p>
+            Makler, Hausverwaltung, Immobilienhandel und später eines der
+            größten Maklerhäuser in Dresden. Viel gesehen, viel gelernt und vor
+            allem verstanden, wie der Markt tatsächlich funktioniert.
+          </p>
+        </div>
+        <div>
+          <p>
+            Dort habe ich auch meinen heutigen Geschäftspartner kennengelernt.
+            Rückblickend war das eine der wichtigsten Begegnungen auf meinem
+            Weg.
+          </p>
+          <p>
+            Selbstständig geworden bin ich zum Jahreswechsel 2022/2023. In
+            einer Phase, in der sich der Markt spürbar verändert hat: steigende
+            Zinsen, mehr Unsicherheit, andere Spielregeln.
+          </p>
+          <p>
+            Für mich war das genau der Moment, in dem sich neue Chancen ergeben
+            haben.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <SectionHeader
+      eyebrow="Warum Immobilien"
+      title="Am Anfang war das Bild einfacher, als die Realität später war."
+    />
+    <div class="split">
+      <div>
+        <p>
+          Zu Immobilien bin ich ehrlich gesagt nicht aus einem besonders tiefen
+          Grund gekommen. In meinem Umfeld gab es jemanden, der beruflich mit
+          Immobilien zu tun hatte. Er ist souverän aufgetreten und hat auch
+          materiellen Erfolg ausgestrahlt. Das hat mich beeindruckt.
+        </p>
+        <p>
+          Für mich war damals ziemlich klar: Immobilien gleich Erfolg. Heute
+          weiß ich, dass es so einfach nicht ist. Es ist genauso anspruchsvoll
+          und arbeitsintensiv wie jede andere Branche auch, nur auf eine andere
+          Art.
+        </p>
+      </div>
+      <div class="notice">
+        Der erste Job in der Hausverwaltung war ein Reality-Check: viel
+        Bürokratie, viel Verwaltung und das Gefühl, sich hauptsächlich um
+        Probleme zu kümmern, die andere haben. Rückblickend war genau das
+        wichtig, um zu verstehen, was ich nicht machen will.
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="section">
+      <SectionHeader
+        eyebrow="Learning"
+        title="Du kannst den Markt nicht komplett verändern. Aber du kannst entscheiden, mit wem du ihn gestaltest."
+      />
+      <div class="grid-two">
+        <article class="plain-card">
+          <h3>Was ich früh lernen musste</h3>
+          <p>
+            Der Immobilienmarkt kann hart sein. Es geht um Geld, und das
+            verändert bei manchen die Art, wie Entscheidungen getroffen werden.
+            Ich musste lernen, mit Rückschlägen und enttäuschtem Vertrauen
+            umzugehen.
+          </p>
+        </article>
+        <article class="plain-card">
+          <h3>Was ich behalten will</h3>
+          <p>
+            Fair bleiben, transparent arbeiten und langfristig denken. Nicht,
+            weil es kurzfristig immer der einfachste Weg ist, sondern weil ich
+            genau so mein Umfeld aufbauen möchte.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="split">
+      <div>
+        <p class="eyebrow">Warum diese Website</p>
+        <h2>Weniger Hochglanz, mehr Realität.</h2>
+      </div>
+      <div>
+        <p>
+          Heute bin ich im Immobilienmarkt selbstständig, mit Fokus auf Ankauf,
+          Entwicklung und Sanierung. Mich reizt vor allem, dass am Ende etwas
+          Greifbares entsteht: Wohnraum, der genutzt wird. Ergebnisse, die
+          sichtbar sind.
+        </p>
+        <p>
+          Der Weg dahin war nicht immer einfach. Gerade am Anfang ging es viel
+          darum, überhaupt ernst genommen zu werden. Auch Kapital war eine
+          Herausforderung, weil ich nicht aus einem Umfeld komme, in dem
+          Immobilien einfach da sind.
+        </p>
+        <p>
+          Genau diese Erfahrungen prägen meinen Blick: weniger Theorie, mehr
+          Praxis. Weniger perfekte Geschichten, mehr echte Einordnung.
+        </p>
+        <div class="button-row">
+          <a class="button" href="/erfahrungen">Erfahrungen lesen</a>
+          <a class="button-secondary" href="/unternehmensgruppe">Unternehmen ansehen</a>
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>

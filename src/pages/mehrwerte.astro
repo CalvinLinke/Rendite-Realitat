@@ -1,6 +1,75 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import LeadCard from "../components/LeadCard.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+
+const leadMagnets = (await getCollection("mehrwerte")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
 ---
-<BaseLayout title="Mehrwerte" description="Roadmaps und Checklisten für bessere Immobilienentscheidungen.">
-  <section class="section"><p class="eyebrow">Mehrwerte</p><h1>Hilfreich, konkret und ohne Verkaufsdruck.</h1><p>Hier entstehen Roadmaps, Checklisten und einfache Vorlagen. Nicht als Versprechen, dass alles leicht wird, sondern als Struktur für bessere Entscheidungen.</p><div class="grid-two"><article class="card"><h3>First-Time-Buyer-Roadmap 2026</h3><p>Ein 45-Tage-Plan für den Immobilienkauf: von Klarheit und Finanzierung bis Notar und Schlüsselübergabe.</p></article><article class="card"><h3>10 teure Fehler beim Immobilienverkauf 2026</h3><p>Ein Ratgeber für Eigentümer, die ihren Verkauf sicherer, planbarer und wirtschaftlich besser vorbereiten möchten.</p></article></div></section>
+
+<BaseLayout
+  title="Mehrwerte"
+  description="Kostenlose Roadmaps, Checklisten und praktische Inhalte für bessere Immobilienentscheidungen."
+>
+  <section class="hero">
+    <div>
+      <p class="eyebrow">Mehrwerte</p>
+      <h1>Hilfreich, konkret und ohne Verkaufsdruck.</h1>
+      <p>
+        Hier findest du Roadmaps, Checklisten und einfache Vorlagen. Nicht als
+        Versprechen, dass alles leicht wird, sondern als Struktur für bessere
+        Entscheidungen.
+      </p>
+    </div>
+    <div class="hero-image">
+      <img src="/images/interiors/badezimmer-modern.jpg" alt="Saniertes Badezimmer" />
+      <p class="hero-note">
+        Die Mehrwerte können später als PDF-Downloads gegen E-Mail erweitert
+        werden. Aktuell sind sie direkt als Website-Inhalte angelegt.
+      </p>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="section">
+      <SectionHeader
+        eyebrow="Downloads und Inhalte"
+        title="Erste Mehrwerte"
+        text="Zum Start sind zwei zentrale Inhalte vorbereitet: Käufer-Roadmap und Verkäufer-Checkliste."
+      />
+      <div class="grid-two">
+        {leadMagnets.map((entry) => (
+          <LeadCard
+            href={`/mehrwerte/${entry.id}`}
+            title={entry.data.title}
+            description={entry.data.description}
+            type={entry.data.type}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="split">
+      <div>
+        <p class="eyebrow">Nächster Ausbau</p>
+        <h2>Aus Website-Inhalten können echte Leadmagneten werden.</h2>
+      </div>
+      <div>
+        <p>
+          Technisch ist diese Seite so vorbereitet, dass die Inhalte später als
+          PDF-Download, Newsletter-Anmeldung oder Formularstrecke erweitert
+          werden können.
+        </p>
+        <p>
+          Für den ersten Launch ist es sinnvoll, die Inhalte offen zugänglich zu
+          machen. Das stärkt Vertrauen und zeigt sofort, welchen praktischen
+          Wert Rendite & Realität liefern soll.
+        </p>
+      </div>
+    </div>
+  </section>
 </BaseLayout>

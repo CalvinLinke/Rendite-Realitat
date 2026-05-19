@@ -1,0 +1,35 @@
+---
+import { getCollection, render } from "astro:content";
+import ArticleLayout from "../../layouts/ArticleLayout.astro";
+import { site } from "../../data/site";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("mehrwerte");
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry }
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<ArticleLayout
+  title={entry.data.title}
+  description={entry.data.description}
+  category={entry.data.type}
+  date={entry.data.date}
+>
+  <Content />
+  <div class="notice">
+    <strong>Hinweis:</strong> Dieser Mehrwert ist aktuell als Website-Inhalt
+    angelegt. Wenn du daraus später ein PDF gegen E-Mail machen möchtest,
+    kann hier ein Newsletter- oder Formularanbieter angeschlossen werden.
+  </div>
+  <p>
+    <a href={`mailto:${site.email}?subject=${encodeURIComponent(entry.data.title)}`}>
+      Rückfrage zu diesem Mehrwert senden
+    </a>
+  </p>
+</ArticleLayout>

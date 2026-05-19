@@ -1,0 +1,25 @@
+---
+interface Props {
+  company: {
+    name: string;
+    founded: string;
+    role: string;
+    text: string;
+    url: string;
+    logo: string;
+  };
+}
+
+const { company } = Astro.props;
+---
+
+<article class="company-card">
+  <div class="company-logo">
+    <img src={company.logo} alt={`${company.name} Logo`} loading="lazy" />
+  </div>
+  <p class="eyebrow">Gegründet {company.founded}</p>
+  <h3>{company.name}</h3>
+  <p class="company-role">{company.role}</p>
+  <p>{company.text}</p>
+  <a href={company.url} target="_blank" rel="noreferrer">Website öffnen</a>
+</article>

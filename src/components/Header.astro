@@ -1,0 +1,23 @@
+---
+import { navItems, site } from "../data/site";
+
+const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isActive = (href: string) => {
+  if (href === "/") return path === "/";
+  return path === href || path.startsWith(`${href}/`);
+};
+---
+
+<header class="site-header">
+  <a class="brand" href="/" aria-label="Rendite & Realität Startseite">
+    <span class="brand-mark">R&R</span>
+    <span>{site.name}</span>
+  </a>
+  <nav aria-label="Hauptnavigation">
+    {navItems.map((item) => (
+      <a href={item.href} aria-current={isActive(item.href) ? "page" : undefined}>
+        {item.label}
+      </a>
+    ))}
+  </nav>
+</header>

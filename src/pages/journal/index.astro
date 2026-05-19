@@ -1,0 +1,35 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArticleCard from "../../components/ArticleCard.astro";
+import SectionHeader from "../../components/SectionHeader.astro";
+
+const journal = (await getCollection("journal")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<BaseLayout
+  title="Journal"
+  description="Alle Beiträge von Rendite & Realität: Erfahrungen, Immobilienwissen und Unternehmeralltag."
+>
+  <section class="section">
+    <SectionHeader
+      eyebrow="Journal"
+      title="Alle Beiträge"
+      text="Erfahrungen, Immobilienwissen und Gedanken zum Aufbau der Unternehmensgruppe."
+    />
+    <div class="grid">
+      {journal.map((entry) => (
+        <ArticleCard
+          href={`/journal/${entry.id}`}
+          title={entry.data.title}
+          description={entry.data.description}
+          category={entry.data.category}
+          date={entry.data.date}
+          image={entry.data.image}
+        />
+      ))}
+    </div>
+  </section>
+</BaseLayout>

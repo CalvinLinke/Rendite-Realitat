@@ -1,6 +1,131 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ArticleCard from "../components/ArticleCard.astro";
+import BeforeAfter from "../components/BeforeAfter.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+
+const journal = (await getCollection("journal"))
+  .filter((entry) => ["Erfahrung", "Fehler & Learnings", "Learning"].includes(entry.data.category))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const beforeAfter = [
+  {
+    title: "Küche",
+    before: "/images/before-after/kueche-vorher.jpg",
+    after: "/images/before-after/kueche-nachher.jpg"
+  },
+  {
+    title: "Wohnzimmer",
+    before: "/images/before-after/wohnzimmer-vorher.jpg",
+    after: "/images/before-after/wohnzimmer-nachher.jpg"
+  },
+  {
+    title: "Badezimmer",
+    before: "/images/before-after/bad-vorher.jpg",
+    after: "/images/before-after/bad-nachher.jpg"
+  },
+  {
+    title: "Flur",
+    before: "/images/before-after/flur-vorher.jpg",
+    after: "/images/before-after/flur-nachher.jpg"
+  },
+  {
+    title: "Schlafzimmer",
+    before: "/images/before-after/schlafzimmer-vorher.jpg",
+    after: "/images/before-after/schlafzimmer-nachher.jpg"
+  }
+];
 ---
-<BaseLayout title="Erfahrungen" description="Echte Geschichten aus Immobilienprojekten, Entscheidungen und Learnings.">
-  <section class="section prose"><p class="eyebrow">Erfahrungen</p><h1>Hier wird Rendite & Realität konkret.</h1><p>Dieser Bereich ist das Herz der Website: echte Geschichten aus Projekten, Gesprächen und Momenten, in denen ein Plan plötzlich anders aussieht als gedacht.</p><h2>Der sichere Deal, der keiner war</h2><p>Es gibt Momente, in denen ein Objekt auf den ersten Blick genau das ist, was man sucht. Die Eckdaten passen, die Lage ist solide, die Unterlagen sind vollständig und der Preis wirkt nachvollziehbar.</p><p>Und genau das war der Punkt, der mich irgendwann stutzig gemacht hat. Je tiefer wir geprüft haben, desto mehr kleine Details sind sichtbar geworden, die langfristig Auswirkungen gehabt hätten.</p><div class="quote">Ein guter Deal ist nicht der, der auf dem Papier gut aussieht. Sondern der, der auch im Detail funktioniert.</div><h2>Was ich daraus mitnehme</h2><p>Manchmal besteht die eigentliche Disziplin darin, einen Deal nicht zu machen. Nicht, weil das Objekt schlecht ist, sondern weil es nicht zum eigenen Ansatz passt.</p></section>
+
+<BaseLayout
+  title="Erfahrungen"
+  description="Echte Geschichten aus Immobilienprojekten, Entscheidungen, Fehlern und Learnings."
+  image="/images/before-after/wohnzimmer-nachher.jpg"
+>
+  <section class="hero">
+    <div>
+      <p class="eyebrow">Erfahrungen</p>
+      <h1>Hier wird Rendite & Realität konkret.</h1>
+      <p>
+        Dieser Bereich ist das Herz der Website: echte Geschichten aus
+        Projekten, Gesprächen und Momenten, in denen ein Plan plötzlich anders
+        aussieht als gedacht.
+      </p>
+    </div>
+    <div class="hero-image">
+      <img src="/images/before-after/wohnzimmer-nachher.jpg" alt="Saniertes Wohnzimmer" />
+      <p class="hero-note">
+        Nicht jedes Projekt läuft glatt. Aber genau in diesen Phasen entstehen
+        die Learnings, die später wirklich zählen.
+      </p>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="section">
+      <SectionHeader
+        eyebrow="Journal"
+        title="Erfahrungsberichte"
+        text="Jeder Beitrag folgt einem einfachen Prinzip: Was war die Ausgangssituation, was ist passiert und was kann man daraus lernen?"
+      />
+      <div class="grid">
+        {journal.map((entry) => (
+          <ArticleCard
+            href={`/journal/${entry.id}`}
+            title={entry.data.title}
+            description={entry.data.description}
+            category={entry.data.category}
+            date={entry.data.date}
+            image={entry.data.image}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="split">
+      <div>
+        <p class="eyebrow">Ein Projekt, das hängen bleibt</p>
+        <h2>Stolz bin ich selten auf den einfachen Teil.</h2>
+      </div>
+      <div>
+        <p>
+          Es gibt Projekte, die am Anfang nicht wie eine Traumimmobilie wirken.
+          Viele offene Fragen, wenig Struktur, Risiken, die man nicht komplett
+          greifen kann. Und trotzdem entscheidet man sich dafür, weil man daran
+          glaubt, daraus etwas machen zu können.
+        </p>
+        <p>
+          Das Ergebnis ist dann nicht nur das fertige Objekt. Es ist der Weg
+          dorthin: Abstimmungen, Probleme, Umplanungen, Entscheidungen und das
+          Dranbleiben, obwohl es zwischendurch leichter gewesen wäre,
+          auszusteigen.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="section">
+      <SectionHeader
+        eyebrow="Vorher / Nachher"
+        title="Aus Sanierung wird sichtbar, was vorher nur im Kopf existiert."
+        text="Die Bilder zeigen den praktischen Teil der Arbeit: planen, öffnen, neu denken, fertigstellen."
+      />
+      <div class="grid-two">
+        {beforeAfter.map((item) => <BeforeAfter {...item} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="notice">
+      Ein Fehler, der mich bis heute begleitet: zu viel Sicherheit in einer
+      Planung. Die beste Kalkulation kann kippen, wenn sich mehrere
+      Rahmenbedingungen gleichzeitig verändern. Seitdem plane ich weiter sauber,
+      aber mit mehr Puffer und weniger Selbstsicherheit.
+    </div>
+  </section>
 </BaseLayout>

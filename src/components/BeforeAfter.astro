@@ -1,0 +1,23 @@
+---
+interface Props {
+  title: string;
+  before: string;
+  after: string;
+}
+
+const { title, before, after } = Astro.props;
+---
+
+<article class="before-after">
+  <h3>{title}</h3>
+  <div>
+    <figure>
+      <img src={before} alt={`${title} vorher`} loading="lazy" />
+      <figcaption>Vorher</figcaption>
+    </figure>
+    <figure>
+      <img src={after} alt={`${title} nachher`} loading="lazy" />
+      <figcaption>Nachher</figcaption>
+    </figure>
+  </div>
+</article>

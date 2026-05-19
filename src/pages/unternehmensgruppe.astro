@@ -1,6 +1,89 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CompanyCard from "../components/CompanyCard.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import { companies } from "../data/site";
 ---
-<BaseLayout title="Unternehmensgruppe" description="CADA Invest, Saxovia und GFU Distribution im Überblick.">
-  <section class="section"><p class="eyebrow">Unternehmensgruppe</p><h1>Nicht als fertiger Plan entstanden. Sondern Schritt für Schritt.</h1><p>Wenn ich heute auf meine Unternehmen schaue, sehe ich weniger eine klassisch geplante Gruppe. Vieles ist entstanden, weil sich aus dem Alltag heraus Chancen oder Probleme ergeben haben.</p><div class="grid"><article class="card"><h3>CADA Invest GmbH</h3><p>Gegründet 2022. Ankauf, Entwicklung und Sanierung von Immobilien mit Potenzial.</p><a href="https://www.cada-invest.de">Website öffnen</a></article><article class="card"><h3>Saxovia</h3><p>Gegründet 2026. Strukturierte Vermittlung und verlässliche Begleitung für Eigentümer.</p><a href="https://www.saxovia.de">Website öffnen</a></article><article class="card"><h3>GFU Distribution UG</h3><p>Gegründet 2022. Glasfaseranschlüsse und Infrastruktur für Unternehmen.</p><a href="https://www.glasfaser-fuer-unternehmen.de">Website öffnen</a></article></div></section>
+
+<BaseLayout
+  title="Unternehmensgruppe"
+  description="Wie CADA Invest, Saxovia und GFU Distribution aus unterschiedlichen Aufgaben entstanden sind."
+  image="/images/portraits/cada-partner.jpg"
+>
+  <section class="hero">
+    <div>
+      <p class="eyebrow">Unternehmensgruppe</p>
+      <h1>Nicht als fertiger Plan entstanden. Sondern Schritt für Schritt.</h1>
+      <p>
+        Wenn ich heute auf meine Unternehmen schaue, sehe ich weniger eine
+        klassisch geplante Gruppe. Vieles ist entstanden, weil sich aus dem
+        Alltag heraus Chancen oder Probleme ergeben haben, die eine eigene
+        Lösung gebraucht haben.
+      </p>
+    </div>
+    <div class="hero-image">
+      <img src="/images/portraits/cada-partner.jpg" alt="Calvin Linke und Geschäftspartner" />
+      <p class="hero-note">
+        Die Unternehmensgruppe ist kein fertiges Konstrukt. Sie entwickelt sich
+        mit den Erfahrungen, Projekten und Menschen, die sie prägen.
+      </p>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="section">
+      <SectionHeader
+        eyebrow="Überblick"
+        title="Drei Unternehmen, drei Aufgaben"
+        text="Jedes Unternehmen hat eine eigene Rolle. Zusammen zeigen sie, wie sich aus Praxis, Netzwerk und Bedarf neue Strukturen entwickeln."
+      />
+      <div class="grid">
+        {companies.map((company) => <CompanyCard company={company} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <SectionHeader
+      eyebrow="Einordnung"
+      title="Was die Unternehmen verbindet"
+      text="Nicht die Branche allein, sondern die Haltung: ein Problem erkennen, Verantwortung übernehmen und eine eigene Lösung aufbauen."
+    />
+    <div class="grid-two">
+      <article class="plain-card">
+        <h3>CADA Invest</h3>
+        <p>
+          Strategisch und operativ eng an meiner Arbeit: Ankauf,
+          Verhandlungen, Netzwerk und Kapitalbeschaffung. Mein Geschäftspartner
+          ergänzt die Themen Controlling, Finanzstruktur, Steuern und
+          Sanierungssteuerung.
+        </p>
+      </article>
+      <article class="plain-card">
+        <h3>GFU Distribution</h3>
+        <p>
+          Operativ eigenständiger aufgestellt. Meine Rolle liegt stärker auf
+          Strategie, Finanzplanung, Wachstum und teilweise Marketing. Ein gutes
+          Beispiel dafür, dass Geschäftsideen auch außerhalb der Kernbranche
+          entstehen können.
+        </p>
+      </article>
+      <article class="plain-card">
+        <h3>Saxovia</h3>
+        <p>
+          Das jüngste Unternehmen. Aktuell noch im Aufbau, mit Fokus auf
+          strukturierte Vermittlung, klare Prozesse und bessere Vorbereitung
+          für Eigentümer.
+        </p>
+      </article>
+      <article class="plain-card">
+        <h3>Gemeinsames Learning</h3>
+        <p>
+          Es wird nie komplett planbar. Unerwartete Probleme gehören dazu.
+          Entscheidend ist, mit wem man sie löst und ob man Strukturen schafft,
+          die langfristig tragen.
+        </p>
+      </article>
+    </div>
+  </section>
 </BaseLayout>

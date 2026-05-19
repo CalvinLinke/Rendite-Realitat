@@ -1,6 +1,88 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import { site } from "../data/site";
 ---
-<BaseLayout title="Kontakt" description="Kontakt zu Rendite & Realität.">
-  <section class="section prose"><p class="eyebrow">Kontakt</p><h1>Wenn du ein Thema hast, schreib mir gern.</h1><p>Ob Immobilienfrage, Austausch, Kooperationsidee oder Feedback zu einem Beitrag: Der erste Schritt darf einfach sein.</p><p><a class="button" href="mailto:kontakt@rendite-realitaet.de">E-Mail schreiben</a></p><div class="quote">Bitte ersetze die E-Mail-Adresse vor dem Launch durch deine finale Kontaktadresse.</div></section>
+
+<BaseLayout
+  title="Kontakt"
+  description="Kontakt zu Rendite & Realität für Austausch, Immobilienfragen, Kooperationen und Hinweise."
+>
+  <section class="hero">
+    <div>
+      <p class="eyebrow">Kontakt</p>
+      <h1>Wenn du ein Thema hast, schreib mir gern.</h1>
+      <p>
+        Ob Immobilienfrage, Austausch, Kooperationsidee oder Feedback zu einem
+        Beitrag: Der erste Schritt darf einfach sein.
+      </p>
+      <div class="hero-actions">
+        <a class="button" href={`mailto:${site.email}`}>E-Mail schreiben</a>
+        <a class="button-secondary" href={site.socials.linkedin} target="_blank" rel="noreferrer">
+          LinkedIn öffnen
+        </a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="/images/portraits/calvin-square.jpg" alt="Calvin Linke" />
+      <p class="hero-note">
+        Die Kontaktdaten sind aktuell als Platzhalter hinterlegt. Du kannst sie
+        in <code>src/data/site.ts</code> zentral ändern.
+      </p>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="section">
+      <SectionHeader
+        eyebrow="Anfragearten"
+        title="Worum es gehen kann"
+        text="Die Seite ist bewusst offen gehalten, aber die wichtigsten Kontaktwege sind klar sortiert."
+      />
+      <div class="grid">
+        <article class="plain-card">
+          <h3>Austausch</h3>
+          <p>
+            Gedanken zu Immobilien, Unternehmertum, Projekten oder einem Beitrag
+            auf dieser Website.
+          </p>
+        </article>
+        <article class="plain-card">
+          <h3>Immobilienangebot</h3>
+          <p>
+            Hinweise auf Objekte, Entwicklungspotenziale oder Verkaufsfragen,
+            die fachlich eingeordnet werden sollen.
+          </p>
+        </article>
+        <article class="plain-card">
+          <h3>Kooperation</h3>
+          <p>
+            Anfragen von Unternehmern, Maklern, Finanzierern, Handwerkern,
+            Dienstleistern oder anderen Partnern.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="split">
+      <div>
+        <p class="eyebrow">Direktkontakt</p>
+        <h2>Aktuell bewusst einfach.</h2>
+      </div>
+      <div>
+        <p>
+          Für den Start ist ein direkter E-Mail-Link oft sauberer als ein
+          Formular ohne angebundenen Prozess. Ein Formular kann später mit
+          Vercel, einem Newsletter-System oder einem CRM ergänzt werden.
+        </p>
+        <ul class="contact-list">
+          <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+          <li><a href={site.socials.linkedin} target="_blank" rel="noreferrer">LinkedIn</a></li>
+          <li><a href={site.socials.instagram} target="_blank" rel="noreferrer">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
