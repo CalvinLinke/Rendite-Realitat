@@ -1,16 +1,18 @@
 ---
-import { footerItems, navItems, site } from "../data/site";
+import { navItems, site } from "../data/site";
 ---
 
 <footer class="site-footer">
   <div class="footer-brand">
     <p class="footer-title">{site.name}</p>
     <p>
-      © 2026 Rendite & Realität. Persönliche Dokumentation von Business,
-      Immobilien und echten Entscheidungen.
+      Ehrliche Einblicke in Immobilien, Unternehmertum und Entscheidungen aus
+      der Praxis.
     </p>
   </div>
   <nav class="footer-links" aria-label="Fußnavigation">
-    {[...navItems, ...footerItems].map((item) => <a href={item.href}>{item.label}</a>)}
+    {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
+    <a href="/impressum">Impressum</a>
+    <a href="/datenschutz">Datenschutz</a>
   </nav>
 </footer>
