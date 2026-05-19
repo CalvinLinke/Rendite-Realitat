@@ -1,8 +1,8 @@
 export const site = {
   name: "Rendite & Realität",
-  claim: "Rendite ist das Ziel. Realität ist der Weg.",
+  claim: "Unternehmen, Immobilien und echte Erfahrungen ohne Inszenierung.",
   description:
-    "Ehrliche Einblicke in Immobilien, Unternehmertum und den Aufbau einer Unternehmensgruppe aus der Praxis.",
+    "Ein persönliches Journal über Aufbau, Entscheidungen, Fehler, Rendite und die Realität dahinter.",
   url: "https://rendite-realitaet.de",
   author: "Calvin Linke",
   email: "kontakt@rendite-realitaet.de",
@@ -14,13 +14,18 @@ export const site = {
 };
 
 export const navItems = [
-  { href: "/", label: "Start" },
-  { href: "/meine-reise", label: "Meine Reise" },
-  { href: "/erfahrungen", label: "Erfahrungen" },
-  { href: "/immobilienwissen", label: "Immobilienwissen" },
+  { href: "/journal", label: "Journal" },
+  { href: "/immobilienwissen", label: "Immobilien" },
+  { href: "/unternehmensgruppe", label: "Unternehmen" },
+  { href: "/erfahrungen", label: "Learnings" },
+  { href: "/meine-reise", label: "Über mich" }
+];
+
+export const footerItems = [
   { href: "/mehrwerte", label: "Mehrwerte" },
-  { href: "/unternehmensgruppe", label: "Unternehmensgruppe" },
-  { href: "/kontakt", label: "Kontakt" }
+  { href: "/kontakt", label: "Kontakt" },
+  { href: "/impressum", label: "Impressum" },
+  { href: "/datenschutz", label: "Datenschutz" }
 ];
 
 export const companies = [
