@@ -1,0 +1,37 @@
+---
+import '../styles/global.css';
+const { title = 'Rendite & Realität', description = 'Ehrliche Einblicke in Immobilien, Unternehmertum und den Aufbau einer Unternehmensgruppe.' } = Astro.props;
+const nav = [
+  ['/', 'Start'],
+  ['/meine-reise', 'Meine Reise'],
+  ['/erfahrungen', 'Erfahrungen'],
+  ['/immobilienwissen', 'Immobilienwissen'],
+  ['/mehrwerte', 'Mehrwerte'],
+  ['/unternehmensgruppe', 'Unternehmensgruppe'],
+  ['/kontakt', 'Kontakt']
+];
+---
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} | Rendite & Realität</title>
+    <meta name="description" content={description} />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">Rendite & Realität</a>
+      <nav>
+        {nav.map(([href, label]) => <a href={href}>{label}</a>)}
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <p><strong>Rendite & Realität</strong><br />Ehrliche Erfahrungen aus Immobilien, Unternehmertum und Praxis.</p>
+      <p><a href="/kontakt">Kontakt</a></p>
+    </footer>
+  </body>
+</html>
